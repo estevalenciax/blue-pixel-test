@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/triviaFragment"
+        android:name="com.ev.bluepixel.trivia.ui.TriviaFragment"
+        android:label="fragment_trivia"
+        tools:layout="@layout/fragment_trivia" />
+    <fragment
+        android:id="@+id/jokesFragment"
+        android:name="com.ev.bluepixel.jokes.ui.JokesFragment"
+        android:label="fragment_jokes"
+        tools:layout="@layout/fragment_jokes" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ev.bluepixel.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_triviaFragment"
+            app:destination="@id/triviaFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_jokesMainFragment"
+            app:destination="@id/jokesMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jokesMainFragment"
+        android:name="com.ev.bluepixel.jokes.ui.JokesMainFragment"
+        android:label="fragment_jokes_main"
+        tools:layout="@layout/fragment_jokes_main" >
+        <action
+            android:id="@+id/action_jokesMainFragment_to_jokesFragment"
+            app:destination="@id/jokesFragment" />
+        <action
+            android:id="@+id/action_jokesMainFragment_to_favoriteJokesFragment"
+            app:destination="@id/favoriteJokesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteJokesFragment"
+        android:name="com.ev.bluepixel.jokes.ui.FavoriteJokesFragment"
+        android:label="fragment_favorite_jokes"
+        tools:layout="@layout/fragment_favorite_jokes" />
+</navigation>

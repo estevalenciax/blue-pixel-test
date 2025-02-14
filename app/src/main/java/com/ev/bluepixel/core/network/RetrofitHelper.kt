@@ -8,4 +8,10 @@ object RetrofitHelper {
         .baseUrl("https://opentdb.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+    fun getRetrofitJokes() = Retrofit.Builder()
+        .baseUrl("https://api.chucknorris.io/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
 }

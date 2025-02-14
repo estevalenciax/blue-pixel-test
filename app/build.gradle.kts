@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    alias(libs.plugins.hiltAndroid)
 }
 
 android {
@@ -59,4 +60,15 @@ dependencies {
     implementation(libs.viewmodel.activity)
     implementation (libs.androidx.room.ktx)
     kapt (libs.androidx.room.compiler)
+
+    implementation (libs.androidx.fragment.ktx)
+
+    // Navigation Component
+    implementation (libs.androidx.navigation.fragment.ktx)
+    implementation (libs.androidx.navigation.ui.ktx)
+
+    implementation (libs.androidx.viewpager2)
+
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
 }

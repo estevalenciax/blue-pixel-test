@@ -1,4 +1,4 @@
-package com.ev.bluepixel.model.api.response
+package com.ev.bluepixel.trivia.data.model.api.response
 
 data class ApiResponse(
     val response_code: Int,

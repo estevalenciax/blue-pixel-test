@@ -29,6 +29,18 @@ class JokesFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initListeners()
+        initObservers()
+
+        viewModel.getJoke()
+    }
+
+    private fun initListeners() {
+        binding.nextJokeBtn.setOnClickListener(this)
+        binding.favoriteBtn.setOnClickListener(this)
+    }
+
+    private fun initObservers() {
         viewModel.joke.observe(viewLifecycleOwner) {
             binding.jokeTv.text = it.value
             if (it.value.isBlank()) {
@@ -45,16 +57,11 @@ class JokesFragment : Fragment(), View.OnClickListener {
             binding.nextJokeBtn.visibility = if (it) View.GONE else View.VISIBLE
             binding.favoriteBtn.visibility = if (it) View.GONE else View.VISIBLE
         }
-        binding.nextJokeBtn.setOnClickListener(this)
-        binding.favoriteBtn.setOnClickListener(this)
-
         viewModel.showError.observe(viewLifecycleOwner) {
             if (it) {
                 Snackbar.make(binding.root, viewModel.errorMessage.value!!, Snackbar.LENGTH_SHORT).show()
             }
         }
-
-        viewModel.getJokev2()
     }
 
     override fun onDestroyView() {
@@ -65,7 +72,7 @@ class JokesFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             binding.nextJokeBtn.id -> {
-                viewModel.getJokev2()
+                viewModel.getJoke()
             }
             binding.favoriteBtn.id -> {
                 viewModel.saveJoke()

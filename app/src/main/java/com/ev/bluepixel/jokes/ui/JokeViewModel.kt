@@ -29,24 +29,10 @@ class JokeViewModel: ViewModel() {
     private val _errorMessage = MutableLiveData("")
     val errorMessage: LiveData<String> = _errorMessage
 
-    private fun getJoke() {
-        viewModelScope.launch {
-            try {
-                _isLoading.value = true
-                val response = repository.getJoke()
-                _joke.value = response
-            } catch (e: Exception) {
-                Log.d("JokeViewModel", "Error al obtener la broma: ${e.message}")
-            } finally {
-                _isLoading.value = false
-            }
-        }
-    }
-
-    fun getJokev2() {
+    fun getJoke() {
         viewModelScope.launch {
             _isLoading.value = true
-            when (val response = repository.getJokev2()) {
+            when (val response = repository.getJoke()) {
                 is Result.Success -> {
                     _joke.value = response.data
                     _errorMessage.value = ""

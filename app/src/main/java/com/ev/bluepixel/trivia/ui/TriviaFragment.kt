@@ -30,12 +30,13 @@ class TriviaFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnAnswerOne.setOnClickListener(this)
-        binding.btnAnswerTwo.setOnClickListener(this)
-        binding.btnAnswerThree.setOnClickListener(this)
-        binding.btnAnswerFour.setOnClickListener(this)
-        binding.btnNextQuestion.setOnClickListener(this)
+        initListeners()
+        initObservers()
 
+        viewModel.getQuestion()
+    }
+
+    private fun initObservers() {
         viewModel.question.observe(viewLifecycleOwner) {
             binding.tvQuestion.text = it.question
             if (it.answers.size == 4) {
@@ -71,9 +72,6 @@ class TriviaFragment : Fragment(), View.OnClickListener {
             binding.btnAnswerTwo.visibility = if (it) View.GONE else View.VISIBLE
             binding.btnAnswerThree.visibility = if (it) View.GONE else View.VISIBLE
             binding.btnAnswerFour.visibility = if (it) View.GONE else View.VISIBLE
-
-
-
         }
 
         viewModel.showError.observe(viewLifecycleOwner) {
@@ -81,8 +79,14 @@ class TriviaFragment : Fragment(), View.OnClickListener {
                 Snackbar.make(binding.root, viewModel.errorMessage.value!!, Snackbar.LENGTH_SHORT).show()
             }
         }
+    }
 
-        viewModel.getQuestionv2()
+    private fun initListeners() {
+        binding.btnAnswerOne.setOnClickListener(this)
+        binding.btnAnswerTwo.setOnClickListener(this)
+        binding.btnAnswerThree.setOnClickListener(this)
+        binding.btnAnswerFour.setOnClickListener(this)
+        binding.btnNextQuestion.setOnClickListener(this)
     }
 
     override fun onDestroyView() {
@@ -93,18 +97,22 @@ class TriviaFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             binding.btnAnswerOne.id, binding.btnAnswerTwo.id, binding.btnAnswerThree.id, binding.btnAnswerFour.id -> {
-                val button: Button = v as Button
-                viewModel.setSelectedAnswer(button.text.toString())
-                if (button.text.toString() == viewModel.question.value!!.correct_answer) {
-                    button.setBackgroundColor(Color.GREEN)
-                } else {
-                    button.setBackgroundColor(Color.RED)
-                }
+                handleOnAnswerClick(v)
             }
             binding.btnNextQuestion.id -> {
-                viewModel.getQuestionv2()
+                viewModel.getQuestion()
             }
 
+        }
+    }
+
+    private fun handleOnAnswerClick(v: View) {
+        val button: Button = v as Button
+        viewModel.setSelectedAnswer(button.text.toString())
+        if (button.text.toString() == viewModel.question.value!!.correct_answer) {
+            button.setBackgroundColor(Color.GREEN)
+        } else {
+            button.setBackgroundColor(Color.RED)
         }
     }
 }

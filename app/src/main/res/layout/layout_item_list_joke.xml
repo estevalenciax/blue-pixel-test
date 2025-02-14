@@ -16,6 +16,8 @@
             android:id="@+id/joke_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

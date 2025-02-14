@@ -47,7 +47,7 @@ class TriviaFragment : Fragment(), View.OnClickListener {
                 binding.btnAnswerTwo.setBackgroundColor(Color.WHITE)
                 binding.btnAnswerThree.setBackgroundColor(Color.WHITE)
                 binding.btnAnswerFour.setBackgroundColor(Color.WHITE)
-                binding.btnNextQuestion.visibility = View.GONE
+                binding.btnNextQuestion.visibility = View.INVISIBLE
             }
 
         }

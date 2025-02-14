@@ -22,7 +22,7 @@ class JokeViewModel: ViewModel() {
     private val _savedJokes = MutableLiveData<List<Joke>>(emptyList())
     val savedJokes: LiveData<List<Joke>> = _savedJokes
 
-    suspend fun getJoke() {
+    fun getJoke() {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
@@ -36,7 +36,7 @@ class JokeViewModel: ViewModel() {
         }
     }
 
-    suspend fun getJokesSaved() {
+    fun getJokesSaved() {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
@@ -51,7 +51,7 @@ class JokeViewModel: ViewModel() {
 
     }
 
-    suspend fun saveJoke() {
+    fun saveJoke() {
         viewModelScope.launch {
             try {
                 _isLoading.value = true

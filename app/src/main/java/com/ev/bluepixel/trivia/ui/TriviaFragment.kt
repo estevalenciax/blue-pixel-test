@@ -57,9 +57,9 @@ class TriviaFragment : Fragment(), View.OnClickListener {
                 return@observe
             }
             if (isCorrectAnswer) {
-//                Snackbar.make(binding.root, "Correct answer", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Correct answer", Snackbar.LENGTH_SHORT).show()
             } else {
-//                Snackbar.make(binding.root, "Incorrect answer", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Incorrect answer", Snackbar.LENGTH_SHORT).show()
             }
             binding.btnNextQuestion.visibility = View.VISIBLE
         }

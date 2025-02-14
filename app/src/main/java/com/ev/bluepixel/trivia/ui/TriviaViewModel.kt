@@ -30,38 +30,18 @@ class TriviaViewModel: ViewModel() {
     private val _errorMessage = MutableLiveData("")
     val errorMessage: LiveData<String> = _errorMessage
 
-    private fun getQuestion() {
-        viewModelScope.launch {
-            _isLoading.value = true
-            val questions = repository.getQuestions()
-            if (questions.isNotEmpty()) {
-                val savedQuestions = repository.getQuestionsFromRoom()
-                val isQuestionAlreadySaved = savedQuestions.any { it.question == questions[0].question }
-                if (isQuestionAlreadySaved) {
-                    getQuestion()
-                    return@launch
-                }
-                _selectedAnswer.value = ""
-                _isCorrectAnswer.value = false
-                questions[0].answers = questions[0].answers.shuffled()
-                _question.value = questions[0]
-            }
-            _isLoading.value = false
-        }
-    }
-
-    fun getQuestionv2() {
+    fun getQuestion() {
         viewModelScope.launch {
             _isLoading.value = true
 
-            when(val result = repository.getQuestionsv2()) {
+            when(val result = repository.getQuestions()) {
                 is Result.Success -> {
                     val questions = result.data
                     if (questions.isNotEmpty()) {
                         val savedQuestions = repository.getQuestionsFromRoom()
                         val isQuestionAlreadySaved = savedQuestions.any { it.question == questions[0].question }
                         if (isQuestionAlreadySaved) {
-                            getQuestionv2()
+                            getQuestion()
                             return@launch
                         }
                         _selectedAnswer.value = ""

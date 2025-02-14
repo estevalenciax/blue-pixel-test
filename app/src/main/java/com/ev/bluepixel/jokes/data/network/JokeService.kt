@@ -14,21 +14,10 @@ import java.io.IOException
 class JokeService {
     val retrofit: Retrofit = RetrofitHelper.getRetrofitJokes()
 
-    suspend fun getJoke(): JokeResponse {
-        return withContext(Dispatchers.IO) {
-            val response = retrofit.create(JokeClient::class.java).getJoke()
-            if (response.isSuccessful) {
-                response.body()!!
-            } else {
-                throw Exception("Error al obtener la broma")
-            }
-        }
-    }
-
-    suspend fun getJokev2(): Result<JokeResponse> {
+    suspend fun getJoke(): Result<JokeResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = retrofit.create(JokeClient::class.java).getJokev2()
+                val response = retrofit.create(JokeClient::class.java).getJoke()
                 Result.Success(response)
             } catch (e: IOException) {
                 Result.Error(NetworkException("Creo que Chuck Norris te cortó el internet :("))

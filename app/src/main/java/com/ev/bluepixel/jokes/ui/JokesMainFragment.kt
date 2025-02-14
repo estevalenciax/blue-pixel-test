@@ -25,9 +25,19 @@ class JokesMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setUpViewPager()
+        initTabLayout()
+
+
+    }
+
+    private fun setUpViewPager() {
         val adapter = TabPagerAdapter(this)
         binding.viewPager.adapter = adapter
+    }
 
+    private fun initTabLayout() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when (position) {
                 0 -> "Chistes"

@@ -14,13 +14,8 @@ class TriviaRepository {
     private val service = TriviaService()
     private val database = PruebaApp.datablase.triviaDao()
 
-    suspend fun getQuestions(): List<Question> {
+    suspend fun getQuestions(): Result<List<Question>> {
         val response = service.getQuestions()
-        return response?.results?.toQuestions() ?: emptyList()
-    }
-
-    suspend fun getQuestionsv2(): Result<List<Question>> {
-        val response = service.getQuestionsv2()
         return when (response) {
             is Result.Success -> {
                 Result.Success(response.data.results.toQuestions())

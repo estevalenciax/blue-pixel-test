@@ -14,21 +14,12 @@ class JokeRepository {
     val service = JokeService()
     val database = PruebaApp.datablase.jokeDao()
 
-    suspend fun getJoke() : Joke {
-        try {
-            val response = service.getJoke()
-            return response.toJoke()
-        }catch (e: Exception){
-            throw Exception(e.message)
-        }
-    }
-    suspend fun getJokev2() : Result<Joke> {
-        val response = service.getJokev2()
+    suspend fun getJoke() : Result<Joke> {
+        val response = service.getJoke()
         return when (response) {
             is Result.Success -> {
                 Result.Success(response.data.toJoke())
             }
-
             is Result.Error -> {
                 Result.Error(response.exception)
             }

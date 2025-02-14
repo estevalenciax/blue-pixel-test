@@ -13,22 +13,10 @@ import java.io.IOException
 class TriviaService() {
     val retrofit = RetrofitHelper.getRetrofit()
 
-    suspend fun getQuestions(): ApiResponse? {
-        return withContext(Dispatchers.IO) {
-            val response = retrofit.create(TriviaClient::class.java).getQuestions()
-            if (response.body() != null && response.body()!!.response_code == 0) {
-                response.body()!!
-            } else{
-                null
-            }
-        }
-
-    }
-
-    suspend fun getQuestionsv2(): Result<ApiResponse> {
+    suspend fun getQuestions(): Result<ApiResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = retrofit.create(TriviaClient::class.java).getQuestionsv2()
+                val response = retrofit.create(TriviaClient::class.java).getQuestions(1, "multiple")
                 Result.Success(response)
             } catch (e: IOException) {
                 Result.Error(NetworkException("Verifica tu conexión a internet"))
@@ -43,7 +31,6 @@ class TriviaService() {
             }
 
         }
-
     }
 
 }

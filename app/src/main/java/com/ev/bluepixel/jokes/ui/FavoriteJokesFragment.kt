@@ -33,16 +33,23 @@ class FavoriteJokesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        setUpRecyclerView()
+        initObservers()
 
+
+    }
+    private fun initObservers() {
         viewModel.savedJokes.observe(viewLifecycleOwner) {
             itemList.clear()
             itemList.addAll(it)
             adapter.notifyDataSetChanged()
         }
+    }
 
+    private fun setUpRecyclerView() {
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onResume() {

@@ -7,8 +7,5 @@ import retrofit2.http.GET
 interface JokeClient {
 
     @GET("/jokes/random")
-    suspend fun getJoke() : Response<JokeResponse>
-
-    @GET("/jokes/random")
-    suspend fun getJokev2() : JokeResponse
+    suspend fun getJoke() : JokeResponse
 }

@@ -28,10 +28,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         binding.goToJokesBtn.setOnClickListener(this)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
-
     }
 
     override fun onClick(v: View?) {
@@ -40,7 +39,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_triviaFragment)
             }
             binding.goToJokesBtn.id -> {
-                findNavController().navigate(R.id.action_homeFragment_to_jokesFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_jokesMainFragment)
             }
         }
     }

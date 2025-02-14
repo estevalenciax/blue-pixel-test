@@ -24,7 +24,24 @@
             android:id="@+id/action_homeFragment_to_triviaFragment"
             app:destination="@id/triviaFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_jokesFragment"
-            app:destination="@id/jokesFragment" />
+            android:id="@+id/action_homeFragment_to_jokesMainFragment"
+            app:destination="@id/jokesMainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/jokesMainFragment"
+        android:name="com.ev.bluepixel.jokes.ui.JokesMainFragment"
+        android:label="fragment_jokes_main"
+        tools:layout="@layout/fragment_jokes_main" >
+        <action
+            android:id="@+id/action_jokesMainFragment_to_jokesFragment"
+            app:destination="@id/jokesFragment" />
+        <action
+            android:id="@+id/action_jokesMainFragment_to_favoriteJokesFragment"
+            app:destination="@id/favoriteJokesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteJokesFragment"
+        android:name="com.ev.bluepixel.jokes.ui.FavoriteJokesFragment"
+        android:label="fragment_favorite_jokes"
+        tools:layout="@layout/fragment_favorite_jokes" />
 </navigation>

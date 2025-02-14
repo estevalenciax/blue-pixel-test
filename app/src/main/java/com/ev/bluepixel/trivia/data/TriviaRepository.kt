@@ -18,6 +18,18 @@ class TriviaRepository {
         return response?.results?.toQuestions() ?: emptyList()
     }
 
+    suspend fun getQuestionsv2(): Result<List<Question>> {
+        val response = service.getQuestionsv2()
+        return when (response) {
+            is Result.Success -> {
+                Result.Success(response.data.results.toQuestions())
+            }
+            is Result.Error -> {
+                Result.Error(response.exception)
+            }
+        }
+    }
+
     suspend fun getQuestionsFromRoom(): List<Question> {
         return withContext(Dispatchers.IO) {
             val response = database.getSavedQuestions()

@@ -23,7 +23,7 @@ class TriviaViewModel: ViewModel() {
     private val _isLoading = MutableLiveData(false)
     val isLoading : LiveData<Boolean> = _isLoading
 
-    fun getQuestion() {
+    private fun getQuestion() {
         viewModelScope.launch {
             _isLoading.value = true
             val questions = repository.getQuestions()
@@ -38,6 +38,33 @@ class TriviaViewModel: ViewModel() {
                 _isCorrectAnswer.value = false
                 questions[0].answers = questions[0].answers.shuffled()
                 _question.value = questions[0]
+            }
+            _isLoading.value = false
+        }
+    }
+
+    fun getQuestionv2() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            when(val result = repository.getQuestionsv2()) {
+                is com.ev.bluepixel.trivia.data.Result.Success -> {
+                    val questions = result.data
+                    if (questions.isNotEmpty()) {
+                        val savedQuestions = repository.getQuestionsFromRoom()
+                        val isQuestionAlreadySaved = savedQuestions.any { it.question == questions[0].question }
+                        if (isQuestionAlreadySaved) {
+                            getQuestionv2()
+                            return@launch
+                        }
+                        _selectedAnswer.value = ""
+                        _isCorrectAnswer.value = false
+                        questions[0].answers = questions[0].answers.shuffled()
+                        _question.value = questions[0]
+                    }
+                }
+                is com.ev.bluepixel.trivia.data.Result.Error -> {
+
+                }
             }
             _isLoading.value = false
         }

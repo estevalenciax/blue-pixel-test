@@ -74,7 +74,7 @@ class TriviaFragment : Fragment(), View.OnClickListener {
             binding.btnAnswerFour.setBackgroundColor(Color.WHITE)
         }
 
-        viewModel.getQuestion()
+        viewModel.getQuestionv2()
     }
 
     override fun onDestroyView() {
@@ -94,7 +94,7 @@ class TriviaFragment : Fragment(), View.OnClickListener {
                 }
             }
             binding.btnNextQuestion.id -> {
-                viewModel.getQuestion()
+                viewModel.getQuestionv2()
             }
 
         }

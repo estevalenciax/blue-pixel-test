@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import com.ev.bluepixel.R
 import com.ev.bluepixel.databinding.FragmentJokesMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class JokesMainFragment : Fragment() {
 
     private var _binding : FragmentJokesMainBinding? = null

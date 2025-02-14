@@ -11,8 +11,9 @@ import androidx.fragment.app.viewModels
 import com.ev.bluepixel.R
 import com.ev.bluepixel.databinding.FragmentTriviaBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class TriviaFragment : Fragment(), View.OnClickListener {
 
     private var _binding : FragmentTriviaBinding? = null

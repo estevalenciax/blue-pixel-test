@@ -7,10 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.ev.bluepixel.data.Result
 import com.ev.bluepixel.trivia.data.model.Question
 import com.ev.bluepixel.trivia.data.TriviaRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TriviaViewModel: ViewModel() {
-    private val repository = TriviaRepository()
+@HiltViewModel
+class TriviaViewModel @Inject constructor(private val repository : TriviaRepository): ViewModel() {
 
     private val _question = MutableLiveData(Question())
     val question : LiveData<Question> = _question
@@ -56,6 +58,8 @@ class TriviaViewModel: ViewModel() {
                     _errorMessage.value = result.exception.message
                     _showError.value = true
                 }
+
+                else -> {}
             }
             _isLoading.value = false
         }

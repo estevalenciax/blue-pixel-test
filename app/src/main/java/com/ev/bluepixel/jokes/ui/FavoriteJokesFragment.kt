@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ev.bluepixel.R
 import com.ev.bluepixel.databinding.FragmentFavoriteJokesBinding
 import com.ev.bluepixel.jokes.data.model.Joke
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FavoriteJokesFragment : Fragment() {
 
     private var _binding: FragmentFavoriteJokesBinding? = null

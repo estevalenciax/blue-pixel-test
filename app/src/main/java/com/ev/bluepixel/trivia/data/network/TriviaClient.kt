@@ -1,6 +1,6 @@
 package com.ev.bluepixel.trivia.data.network
 
-import com.ev.bluepixel.trivia.data.model.response.ApiResponse
+import com.ev.bluepixel.model.api.response.ApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

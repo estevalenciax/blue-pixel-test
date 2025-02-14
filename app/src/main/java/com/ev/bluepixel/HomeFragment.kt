@@ -28,10 +28,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         binding.goToJokesBtn.setOnClickListener(this)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
-
     }
 
     override fun onClick(v: View?) {

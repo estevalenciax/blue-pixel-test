@@ -42,8 +42,8 @@ class JokesFragment : Fragment(), View.OnClickListener {
         viewModel.getJoke()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 

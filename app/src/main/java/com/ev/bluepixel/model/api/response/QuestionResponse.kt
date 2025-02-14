@@ -21,3 +21,16 @@ fun QuestionResponse.toQuestion(): Question {
         type = this.type
     )
 }
+
+fun List<QuestionResponse>.toQuestions(): List<Question> {
+    return this.map { response ->
+        Question(
+            category = response.category,
+            correct_answer = response.correct_answer,
+            difficulty = response.difficulty,
+            incorrect_answers = response.incorrect_answers,
+            question = response.question,
+            type = response.type
+        )
+    }
+}

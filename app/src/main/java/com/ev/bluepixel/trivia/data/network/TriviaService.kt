@@ -31,7 +31,7 @@ class TriviaService() {
                 val response = retrofit.create(TriviaClient::class.java).getQuestionsv2()
                 Result.Success(response)
             } catch (e: IOException) {
-                Result.Error(NetworkException("Error de conexión"))
+                Result.Error(NetworkException("Verifica tu conexión a internet"))
             } catch (e: retrofit2.HttpException) {
                 if (e.code() == 429) {
                     Result.Error(ServerException("Espera un momento para una nueva pregunta."))

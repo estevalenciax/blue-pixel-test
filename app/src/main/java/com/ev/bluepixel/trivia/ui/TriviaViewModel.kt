@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ev.bluepixel.data.Result
 import com.ev.bluepixel.trivia.data.model.Question
 import com.ev.bluepixel.trivia.data.TriviaRepository
 import kotlinx.coroutines.launch
@@ -22,6 +23,12 @@ class TriviaViewModel: ViewModel() {
 
     private val _isLoading = MutableLiveData(false)
     val isLoading : LiveData<Boolean> = _isLoading
+
+    private val _showError = MutableLiveData(false)
+    val showError: LiveData<Boolean> = _showError
+
+    private val _errorMessage = MutableLiveData("")
+    val errorMessage: LiveData<String> = _errorMessage
 
     private fun getQuestion() {
         viewModelScope.launch {
@@ -46,8 +53,9 @@ class TriviaViewModel: ViewModel() {
     fun getQuestionv2() {
         viewModelScope.launch {
             _isLoading.value = true
+
             when(val result = repository.getQuestionsv2()) {
-                is com.ev.bluepixel.trivia.data.Result.Success -> {
+                is Result.Success -> {
                     val questions = result.data
                     if (questions.isNotEmpty()) {
                         val savedQuestions = repository.getQuestionsFromRoom()
@@ -60,10 +68,13 @@ class TriviaViewModel: ViewModel() {
                         _isCorrectAnswer.value = false
                         questions[0].answers = questions[0].answers.shuffled()
                         _question.value = questions[0]
+                        _errorMessage.value = ""
+                        _showError.value = false
                     }
                 }
-                is com.ev.bluepixel.trivia.data.Result.Error -> {
-
+                is Result.Error -> {
+                    _errorMessage.value = result.exception.message
+                    _showError.value = true
                 }
             }
             _isLoading.value = false

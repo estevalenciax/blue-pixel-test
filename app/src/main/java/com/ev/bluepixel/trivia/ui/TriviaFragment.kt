@@ -43,6 +43,11 @@ class TriviaFragment : Fragment(), View.OnClickListener {
                 binding.btnAnswerTwo.text = it.answers[1]
                 binding.btnAnswerThree.text = it.answers[2]
                 binding.btnAnswerFour.text = it.answers[3]
+                binding.btnAnswerOne.setBackgroundColor(Color.WHITE)
+                binding.btnAnswerTwo.setBackgroundColor(Color.WHITE)
+                binding.btnAnswerThree.setBackgroundColor(Color.WHITE)
+                binding.btnAnswerFour.setBackgroundColor(Color.WHITE)
+                binding.btnNextQuestion.visibility = View.GONE
             }
 
         }
@@ -52,9 +57,9 @@ class TriviaFragment : Fragment(), View.OnClickListener {
                 return@observe
             }
             if (isCorrectAnswer) {
-                Snackbar.make(binding.root, "Correct answer", Snackbar.LENGTH_SHORT).show()
+//                Snackbar.make(binding.root, "Correct answer", Snackbar.LENGTH_SHORT).show()
             } else {
-                Snackbar.make(binding.root, "Incorrect answer", Snackbar.LENGTH_SHORT).show()
+//                Snackbar.make(binding.root, "Incorrect answer", Snackbar.LENGTH_SHORT).show()
             }
             binding.btnNextQuestion.visibility = View.VISIBLE
         }
@@ -66,12 +71,15 @@ class TriviaFragment : Fragment(), View.OnClickListener {
             binding.btnAnswerTwo.visibility = if (it) View.GONE else View.VISIBLE
             binding.btnAnswerThree.visibility = if (it) View.GONE else View.VISIBLE
             binding.btnAnswerFour.visibility = if (it) View.GONE else View.VISIBLE
-            binding.btnNextQuestion.visibility = View.GONE
 
-            binding.btnAnswerOne.setBackgroundColor(Color.WHITE)
-            binding.btnAnswerTwo.setBackgroundColor(Color.WHITE)
-            binding.btnAnswerThree.setBackgroundColor(Color.WHITE)
-            binding.btnAnswerFour.setBackgroundColor(Color.WHITE)
+
+
+        }
+
+        viewModel.showError.observe(viewLifecycleOwner) {
+            if (it) {
+                Snackbar.make(binding.root, viewModel.errorMessage.value!!, Snackbar.LENGTH_SHORT).show()
+            }
         }
 
         viewModel.getQuestionv2()

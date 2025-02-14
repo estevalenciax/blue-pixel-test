@@ -28,6 +28,12 @@ class TriviaViewModel: ViewModel() {
             _isLoading.value = true
             val questions = repository.getQuestions()
             if (questions.isNotEmpty()) {
+                val savedQuestions = repository.getQuestionsFromRoom()
+                val isQuestionAlreadySaved = savedQuestions.any { it.question == questions[0].question }
+                if (isQuestionAlreadySaved) {
+                    getQuestion()
+                    return@launch
+                }
                 _selectedAnswer.value = ""
                 _isCorrectAnswer.value = false
                 questions[0].answers = questions[0].answers.shuffled()
@@ -40,11 +46,18 @@ class TriviaViewModel: ViewModel() {
     fun setSelectedAnswer(answer: String) {
         _selectedAnswer.value = answer
         checkAnswer()
+        saveQuestion()
     }
 
     fun checkAnswer() {
         val correctAnswer = _question.value!!.correct_answer
         _isCorrectAnswer.value = correctAnswer == _selectedAnswer.value!!
+    }
+
+    fun saveQuestion() {
+        viewModelScope.launch {
+            repository.saveQuestion(_question.value!!)
+        }
     }
 
 }

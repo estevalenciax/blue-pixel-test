@@ -39,7 +39,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_triviaFragment)
             }
             binding.goToJokesBtn.id -> {
-                findNavController().navigate(R.id.action_homeFragment_to_jokesFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_jokesMainFragment)
             }
         }
     }

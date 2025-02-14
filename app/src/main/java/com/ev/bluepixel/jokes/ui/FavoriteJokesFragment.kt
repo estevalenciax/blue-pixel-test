@@ -43,8 +43,11 @@ class FavoriteJokesFragment : Fragment() {
             adapter.notifyDataSetChanged()
         }
 
-        viewModel.getJokesSaved()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getJokesSaved()
     }
 
     override fun onDestroyView() {

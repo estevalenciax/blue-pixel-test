@@ -30,7 +30,8 @@ fun List<QuestionResponse>.toQuestions(): List<Question> {
             difficulty = response.difficulty,
             incorrect_answers = response.incorrect_answers,
             question = response.question,
-            type = response.type
+            type = response.type,
+            answers = response.incorrect_answers + response.correct_answer
         )
     }
 }

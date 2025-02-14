@@ -6,7 +6,8 @@ data class Question(
     val difficulty: String = "",
     val incorrect_answers: List<String> = emptyList(),
     val question: String = "",
-    val type: String = ""
+    val type: String = "",
+    var answers: List<String> = emptyList()
 )
 
 

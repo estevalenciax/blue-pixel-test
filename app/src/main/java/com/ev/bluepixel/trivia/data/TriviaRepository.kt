@@ -1,6 +1,7 @@
 package com.ev.bluepixel.trivia.data
 
 import com.ev.bluepixel.core.PruebaApp
+import com.ev.bluepixel.data.Result
 import com.ev.bluepixel.trivia.data.model.Question
 import com.ev.bluepixel.trivia.data.model.api.response.toQuestions
 import com.ev.bluepixel.trivia.data.model.room.toQuestions
@@ -16,6 +17,18 @@ class TriviaRepository {
     suspend fun getQuestions(): List<Question> {
         val response = service.getQuestions()
         return response?.results?.toQuestions() ?: emptyList()
+    }
+
+    suspend fun getQuestionsv2(): Result<List<Question>> {
+        val response = service.getQuestionsv2()
+        return when (response) {
+            is Result.Success -> {
+                Result.Success(response.data.results.toQuestions())
+            }
+            is Result.Error -> {
+                Result.Error(response.exception)
+            }
+        }
     }
 
     suspend fun getQuestionsFromRoom(): List<Question> {

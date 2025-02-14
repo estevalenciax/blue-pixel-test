@@ -43,6 +43,11 @@ class TriviaFragment : Fragment(), View.OnClickListener {
                 binding.btnAnswerTwo.text = it.answers[1]
                 binding.btnAnswerThree.text = it.answers[2]
                 binding.btnAnswerFour.text = it.answers[3]
+                binding.btnAnswerOne.setBackgroundColor(Color.WHITE)
+                binding.btnAnswerTwo.setBackgroundColor(Color.WHITE)
+                binding.btnAnswerThree.setBackgroundColor(Color.WHITE)
+                binding.btnAnswerFour.setBackgroundColor(Color.WHITE)
+                binding.btnNextQuestion.visibility = View.GONE
             }
 
         }
@@ -66,15 +71,18 @@ class TriviaFragment : Fragment(), View.OnClickListener {
             binding.btnAnswerTwo.visibility = if (it) View.GONE else View.VISIBLE
             binding.btnAnswerThree.visibility = if (it) View.GONE else View.VISIBLE
             binding.btnAnswerFour.visibility = if (it) View.GONE else View.VISIBLE
-            binding.btnNextQuestion.visibility = View.GONE
 
-            binding.btnAnswerOne.setBackgroundColor(Color.WHITE)
-            binding.btnAnswerTwo.setBackgroundColor(Color.WHITE)
-            binding.btnAnswerThree.setBackgroundColor(Color.WHITE)
-            binding.btnAnswerFour.setBackgroundColor(Color.WHITE)
+
+
         }
 
-        viewModel.getQuestion()
+        viewModel.showError.observe(viewLifecycleOwner) {
+            if (it) {
+                Snackbar.make(binding.root, viewModel.errorMessage.value!!, Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.getQuestionv2()
     }
 
     override fun onDestroyView() {
@@ -94,7 +102,7 @@ class TriviaFragment : Fragment(), View.OnClickListener {
                 }
             }
             binding.btnNextQuestion.id -> {
-                viewModel.getQuestion()
+                viewModel.getQuestionv2()
             }
 
         }

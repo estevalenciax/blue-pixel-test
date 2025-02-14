@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ev.bluepixel.data.Result
 import com.ev.bluepixel.jokes.data.JokeRepository
 import com.ev.bluepixel.jokes.data.model.Joke
 import kotlinx.coroutines.launch
@@ -22,7 +23,13 @@ class JokeViewModel: ViewModel() {
     private val _savedJokes = MutableLiveData<List<Joke>>(emptyList())
     val savedJokes: LiveData<List<Joke>> = _savedJokes
 
-    fun getJoke() {
+    private val _showError = MutableLiveData(false)
+    val showError: LiveData<Boolean> = _showError
+
+    private val _errorMessage = MutableLiveData("")
+    val errorMessage: LiveData<String> = _errorMessage
+
+    private fun getJoke() {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
@@ -33,6 +40,24 @@ class JokeViewModel: ViewModel() {
             } finally {
                 _isLoading.value = false
             }
+        }
+    }
+
+    fun getJokev2() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            when (val response = repository.getJokev2()) {
+                is Result.Success -> {
+                    _joke.value = response.data
+                    _errorMessage.value = ""
+                    _showError.value = false
+                }
+                is Result.Error -> {
+                    _errorMessage.value = response.exception.message
+                    _showError.value = true
+                }
+            }
+            _isLoading.value = false
         }
     }
 

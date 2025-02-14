@@ -1,10 +1,10 @@
 package com.ev.bluepixel.trivia.data
 
 import com.ev.bluepixel.core.PruebaApp
-import com.ev.bluepixel.model.Question
-import com.ev.bluepixel.model.api.response.toQuestions
-import com.ev.bluepixel.model.room.toQuestions
-import com.ev.bluepixel.model.toQuestionEntity
+import com.ev.bluepixel.trivia.data.model.Question
+import com.ev.bluepixel.trivia.data.model.api.response.toQuestions
+import com.ev.bluepixel.trivia.data.model.room.toQuestions
+import com.ev.bluepixel.trivia.data.model.toQuestionEntity
 import com.ev.bluepixel.trivia.data.network.TriviaService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

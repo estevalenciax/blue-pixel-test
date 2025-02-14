@@ -2,7 +2,7 @@ package com.ev.bluepixel.jokes.data
 
 import com.ev.bluepixel.core.PruebaApp
 import com.ev.bluepixel.jokes.data.model.Joke
-import com.ev.bluepixel.jokes.data.api.JokeService
+import com.ev.bluepixel.jokes.data.network.JokeService
 import com.ev.bluepixel.jokes.data.model.api.response.toJoke
 import com.ev.bluepixel.jokes.data.model.room.toJokes
 import com.ev.bluepixel.jokes.data.model.toJokeEntity

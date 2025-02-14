@@ -1,6 +1,6 @@
-package com.ev.bluepixel.model
+package com.ev.bluepixel.trivia.data.model
 
-import com.ev.bluepixel.model.room.QuestionEntity
+import com.ev.bluepixel.trivia.data.model.room.QuestionEntity
 
 data class Question(
     val category: String = "",

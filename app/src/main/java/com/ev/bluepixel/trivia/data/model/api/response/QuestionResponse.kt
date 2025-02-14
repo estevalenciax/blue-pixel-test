@@ -1,6 +1,6 @@
-package com.ev.bluepixel.model.api.response
+package com.ev.bluepixel.trivia.data.model.api.response
 
-import com.ev.bluepixel.model.Question
+import com.ev.bluepixel.trivia.data.model.Question
 
 data class QuestionResponse(
     val category: String,

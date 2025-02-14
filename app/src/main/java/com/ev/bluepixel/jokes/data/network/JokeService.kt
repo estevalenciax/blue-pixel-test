@@ -1,4 +1,4 @@
-package com.ev.bluepixel.jokes.data.api
+package com.ev.bluepixel.jokes.data.network
 
 import com.ev.bluepixel.core.network.RetrofitHelper
 import com.ev.bluepixel.jokes.data.model.api.response.JokeResponse

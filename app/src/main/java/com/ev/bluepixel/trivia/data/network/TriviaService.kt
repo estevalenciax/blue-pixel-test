@@ -1,6 +1,5 @@
 package com.ev.bluepixel.trivia.data.network
 
-import com.ev.bluepixel.core.network.RetrofitHelper
 import com.ev.bluepixel.data.NetworkException
 import com.ev.bluepixel.data.Result
 import com.ev.bluepixel.data.ServerException
@@ -9,14 +8,14 @@ import com.ev.bluepixel.trivia.data.model.api.response.ApiResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
+import javax.inject.Inject
 
-class TriviaService() {
-    val retrofit = RetrofitHelper.getRetrofit()
+class TriviaService @Inject constructor(private val loginClient: TriviaClient) {
 
     suspend fun getQuestions(): Result<ApiResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = retrofit.create(TriviaClient::class.java).getQuestions(1, "multiple")
+                val response = loginClient.getQuestions(1, "multiple")
                 Result.Success(response)
             } catch (e: IOException) {
                 Result.Error(NetworkException("Verifica tu conexión a internet"))

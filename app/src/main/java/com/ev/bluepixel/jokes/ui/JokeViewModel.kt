@@ -8,11 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.ev.bluepixel.data.Result
 import com.ev.bluepixel.jokes.data.JokeRepository
 import com.ev.bluepixel.jokes.data.model.Joke
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class JokeViewModel: ViewModel() {
-
-    private val repository = JokeRepository()
+@HiltViewModel
+class JokeViewModel @Inject constructor(private val repository : JokeRepository): ViewModel() {
 
     private val _joke = MutableLiveData(Joke())
     val joke: LiveData<Joke> = _joke

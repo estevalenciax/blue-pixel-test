@@ -7,12 +7,12 @@ import com.ev.bluepixel.trivia.data.model.api.response.toQuestions
 import com.ev.bluepixel.trivia.data.model.room.toQuestions
 import com.ev.bluepixel.trivia.data.model.toQuestionEntity
 import com.ev.bluepixel.trivia.data.network.TriviaService
+import com.ev.bluepixel.trivia.data.room.TriviaDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class TriviaRepository {
-    private val service = TriviaService()
-    private val database = PruebaApp.datablase.triviaDao()
+class TriviaRepository @Inject constructor(private val service : TriviaService, private val database : TriviaDao) {
 
     suspend fun getQuestions(): Result<List<Question>> {
         val response = service.getQuestions()

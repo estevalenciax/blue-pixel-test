@@ -9,8 +9,9 @@ import com.ev.bluepixel.R
 import com.ev.bluepixel.databinding.FragmentJokesBinding
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class JokesFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentJokesBinding? = null

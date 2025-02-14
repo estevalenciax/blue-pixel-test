@@ -7,12 +7,12 @@ import com.ev.bluepixel.jokes.data.network.JokeService
 import com.ev.bluepixel.jokes.data.model.api.response.toJoke
 import com.ev.bluepixel.jokes.data.model.room.toJokes
 import com.ev.bluepixel.jokes.data.model.toJokeEntity
+import com.ev.bluepixel.jokes.data.room.JokeDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class JokeRepository {
-    val service = JokeService()
-    val database = PruebaApp.datablase.jokeDao()
+class JokeRepository @Inject constructor(private val service : JokeService, private val database : JokeDao) {
 
     suspend fun getJoke() : Result<Joke> {
         val response = service.getJoke()

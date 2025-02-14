@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    alias(libs.plugins.hiltAndroid)
 }
 
 android {
@@ -67,4 +68,7 @@ dependencies {
     implementation (libs.androidx.navigation.ui.ktx)
 
     implementation (libs.androidx.viewpager2)
+
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
 }

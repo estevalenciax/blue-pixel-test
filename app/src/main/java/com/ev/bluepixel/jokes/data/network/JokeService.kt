@@ -10,14 +10,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import java.io.IOException
+import javax.inject.Inject
 
-class JokeService {
-    val retrofit: Retrofit = RetrofitHelper.getRetrofitJokes()
+class JokeService @Inject constructor(private val jokeClient: JokeClient) {
+
 
     suspend fun getJoke(): Result<JokeResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = retrofit.create(JokeClient::class.java).getJoke()
+                val response = jokeClient.getJoke()
                 Result.Success(response)
             } catch (e: IOException) {
                 Result.Error(NetworkException("Creo que Chuck Norris te cortó el internet :("))

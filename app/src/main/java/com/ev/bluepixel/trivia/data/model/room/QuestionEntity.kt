@@ -1,8 +1,8 @@
-package com.ev.bluepixel.model.room
+package com.ev.bluepixel.trivia.data.model.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ev.bluepixel.model.Question
+import com.ev.bluepixel.trivia.data.model.Question
 
 @Entity(tableName = "questions")
 data class QuestionEntity(

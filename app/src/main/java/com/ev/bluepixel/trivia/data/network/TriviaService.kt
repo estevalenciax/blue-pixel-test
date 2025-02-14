@@ -1,8 +1,8 @@
 package com.ev.bluepixel.trivia.data.network
 
 import com.ev.bluepixel.core.network.RetrofitHelper
-import com.ev.bluepixel.model.api.response.ApiResponse
-import com.ev.bluepixel.model.api.response.QuestionResponse
+import com.ev.bluepixel.trivia.data.model.api.response.ApiResponse
+import com.ev.bluepixel.trivia.data.model.api.response.QuestionResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

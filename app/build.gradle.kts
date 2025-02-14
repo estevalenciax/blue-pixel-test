@@ -59,4 +59,6 @@ dependencies {
     implementation(libs.viewmodel.activity)
     implementation (libs.androidx.room.ktx)
     kapt (libs.androidx.room.compiler)
+
+    implementation (libs.androidx.fragment.ktx)
 }

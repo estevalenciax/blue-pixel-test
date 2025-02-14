@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ev.bluepixel.model.Question
+import com.ev.bluepixel.trivia.data.model.Question
 import com.ev.bluepixel.trivia.data.TriviaRepository
 import kotlinx.coroutines.launch
 

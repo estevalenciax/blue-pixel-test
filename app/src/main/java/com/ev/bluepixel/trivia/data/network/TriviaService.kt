@@ -16,7 +16,7 @@ class TriviaService() {
     suspend fun getQuestions(): Result<ApiResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = retrofit.create(TriviaClient::class.java).getQuestions()
+                val response = retrofit.create(TriviaClient::class.java).getQuestions(1, "multiple")
                 Result.Success(response)
             } catch (e: IOException) {
                 Result.Error(NetworkException("Verifica tu conexión a internet"))

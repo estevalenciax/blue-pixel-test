@@ -8,4 +8,7 @@ interface JokeClient {
 
     @GET("/jokes/random")
     suspend fun getJoke() : Response<JokeResponse>
+
+    @GET("/jokes/random")
+    suspend fun getJokev2() : JokeResponse
 }

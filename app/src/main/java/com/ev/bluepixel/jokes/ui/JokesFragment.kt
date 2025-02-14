@@ -39,7 +39,7 @@ class JokesFragment : Fragment(), View.OnClickListener {
         }
         binding.nextJokeBtn.setOnClickListener(this)
         binding.favoriteBtn.setOnClickListener(this)
-        viewModel.getJoke()
+        viewModel.getJokev2()
     }
 
     override fun onDestroyView() {
@@ -50,7 +50,7 @@ class JokesFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             binding.nextJokeBtn.id -> {
-                viewModel.getJoke()
+                viewModel.getJokev2()
             }
             binding.favoriteBtn.id -> {
                 viewModel.saveJoke()

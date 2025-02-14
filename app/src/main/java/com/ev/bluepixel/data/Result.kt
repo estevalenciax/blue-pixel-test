@@ -1,4 +1,4 @@
-package com.ev.bluepixel.trivia.data
+package com.ev.bluepixel.data
 
 
 sealed class Result<out T> {

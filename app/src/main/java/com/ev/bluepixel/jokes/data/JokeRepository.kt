@@ -1,6 +1,7 @@
 package com.ev.bluepixel.jokes.data
 
 import com.ev.bluepixel.core.PruebaApp
+import com.ev.bluepixel.data.Result
 import com.ev.bluepixel.jokes.data.model.Joke
 import com.ev.bluepixel.jokes.data.network.JokeService
 import com.ev.bluepixel.jokes.data.model.api.response.toJoke
@@ -19,6 +20,18 @@ class JokeRepository {
             return response.toJoke()
         }catch (e: Exception){
             throw Exception(e.message)
+        }
+    }
+    suspend fun getJokev2() : Result<Joke> {
+        val response = service.getJokev2()
+        return when (response) {
+            is Result.Success -> {
+                Result.Success(response.data.toJoke())
+            }
+
+            is Result.Error -> {
+                throw Exception(response.exception.message)
+            }
         }
     }
 

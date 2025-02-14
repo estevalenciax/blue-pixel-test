@@ -1,6 +1,7 @@
 package com.ev.bluepixel.trivia.data
 
 import com.ev.bluepixel.core.PruebaApp
+import com.ev.bluepixel.data.Result
 import com.ev.bluepixel.trivia.data.model.Question
 import com.ev.bluepixel.trivia.data.model.api.response.toQuestions
 import com.ev.bluepixel.trivia.data.model.room.toQuestions

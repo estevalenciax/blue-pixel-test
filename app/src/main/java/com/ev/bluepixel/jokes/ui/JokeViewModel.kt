@@ -57,6 +57,7 @@ class JokeViewModel: ViewModel() {
                     _showError.value = true
                 }
             }
+            _isLoading.value = false
         }
     }
 

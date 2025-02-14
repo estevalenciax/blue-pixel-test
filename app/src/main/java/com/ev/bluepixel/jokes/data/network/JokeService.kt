@@ -31,7 +31,7 @@ class JokeService {
                 val response = retrofit.create(JokeClient::class.java).getJokev2()
                 Result.Success(response)
             } catch (e: IOException) {
-                Result.Error(NetworkException("Error de conexión"))
+                Result.Error(NetworkException("Creo que Chuck Norris te cortó el internet :("))
             } catch (e: retrofit2.HttpException) {
                 Result.Error(ServerException("Error en el servidor: ${e.code()}"))
             } catch (e: Exception) {

@@ -30,7 +30,7 @@ class JokeRepository {
             }
 
             is Result.Error -> {
-                throw Exception(response.exception.message)
+                Result.Error(response.exception)
             }
         }
     }

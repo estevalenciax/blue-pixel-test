@@ -11,6 +11,6 @@ class PruebaApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        datablase = Room.databaseBuilder(this, TriviaDatabase::class.java, "task-db").build()
+        datablase = Room.databaseBuilder(this, TriviaDatabase::class.java, "prueba-db").build()
     }
 }
